@@ -1,0 +1,18 @@
+﻿<Window x:Class="network.randomizerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:network"
+        mc:Ignorable="d"
+        Title="randomizerWindow" Height="400" Width="600">
+    <Grid Margin="0,0,0,-1">
+        <TextBox  x:Name="textboxfromnodes" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="23" Margin="10,15,0,0" TextWrapping="Wrap" Text="Enter the amount of nodes that you want to create" VerticalAlignment="Top" Width="280" GotFocus="TextBox_GotFocus"/>
+
+        <Button Content="Add points" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="295,285,0,0" Click="Button_Click"/>
+        <xctk:ColorPicker Name="ColorPickerForm" HorizontalAlignment="Left" Margin="380,65,0,0" VerticalAlignment="Top" Height="25" Width="40" Background="#FFF34747"/>
+
+    </Grid>
+</Window>
