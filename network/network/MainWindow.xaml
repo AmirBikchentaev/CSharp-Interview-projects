@@ -16,7 +16,7 @@
         <StackPanel Orientation="Horizontal" >
             <Button Padding="10" Margin="10 0 0 10" Content="Print all elements" Click="Button_Click"/>
             <Button Margin="10 0 0 10" Click="Button_Click_1" Content="Delete all elements"/>
-            <Button Margin="10 0 0 10" Click="Button_Click_2" Content="Test asdfadfasdfasf" />
+            <Button Margin="10 0 0 10" Click="Button_Click_2" Content="Insert specific amount of points with specific color" />
 
         </StackPanel>
     </StackPanel>

@@ -62,6 +62,14 @@ namespace network
 
 
              }*/
+            //Deleting every single line before graph update to prevent mass failures due to canvas overflow
+            for (int i = background.Children.Count - 1; i >= 0; i += -1)
+            {
+                UIElement Child = background.Children[i];
+                if (Child is Line)
+                    background.Children.Remove(Child);
+            }
+
 
             List<int> Ycoordinates = new List<int>();
             List<int> Xcoordinates = new List<int>();
@@ -98,36 +106,15 @@ namespace network
 
                 }
             }
-
-
-
-           /*     foreach (FrameworkElement t in background.Children) 
-            {
-                double y = Canvas.GetTop(t);
-                double x = Canvas.GetLeft(t);
-                foreach (FrameworkElement d in background.Children) 
-                {
-                    Line ln = new Line();
-                    ln.Stroke = System.Windows.Media.Brushes.Black;
-                    ln.StrokeThickness = 1;
-                    ln.SnapsToDevicePixels = true;
-                    ln.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-                    double y1 = Canvas.GetTop(t);
-                    double x1 = Canvas.GetLeft(t);
-
-                    background.Children.Add(ln);
-
-                }
-
-            }  */
         }
     }
 
 
-
+        
 
     public class point
     {
+        //base point class
        public int x;
        public int y;
         private int v;
@@ -170,7 +157,7 @@ namespace network
         public static List<point> randomizer(int pointsAmount) 
         {
             //TO DO
-            /*
+            /* done
              *color picker from drop down menu
              * choose amount of points to add
              */
@@ -196,17 +183,17 @@ namespace network
             }
         }
 
-
         public static void circle(int x, int y, Canvas cv,string color )
         {
-           
+            //method for drawing 1 circle on console
 
             Ellipse circle = new Ellipse()
             {
                 Width = 15,
                 Height = 15,
                 Stroke = Brushes.Red,
-                Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom(color))
+                
+                Fill = (SolidColorBrush)(new BrushConverter().ConvertFromString(color))
                 
         };
 
@@ -215,7 +202,6 @@ namespace network
             circle.SetValue(Canvas.LeftProperty, (double)x);
             circle.SetValue(Canvas.TopProperty, (double)y);
         }
-
 
         public static void deleteAllElements(Canvas cs)
         {
