@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,13 @@ namespace network
     {
         public MainWindow()
         {
+            
              Canvas mainCanvas = background;
 
             InitializeComponent();
-         
+            bool drawedLinesState = false;
+            toggleForDrawing.IsChecked = false;
+
 
 
         }
@@ -36,16 +40,18 @@ namespace network
         }
 
  
-
+        //delete all elelements  lined type button
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Interraction.deleteAllElements(background);
+            Interraction.printAlllines(background);
         }
 
+
+        // elements inserting button
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            randomizerWindow r = new randomizerWindow();
-            r.Show();
+            randomizerWindow randomizerWndowInstance = new randomizerWindow();
+            randomizerWndowInstance.Show();
 
 
         }
@@ -74,8 +80,9 @@ namespace network
             List<int> Ycoordinates = new List<int>();
             List<int> Xcoordinates = new List<int>();
 
-
-            foreach (FrameworkElement t in background.Children)
+          //  foreach (Ellipse circle in cs.Children.OfType<Ellipse>())
+         //   {
+                foreach (FrameworkElement t in background.Children.OfType<Ellipse>())
             {
                 double y = Canvas.GetTop(t);
                 double x = Canvas.GetLeft(t);
@@ -107,18 +114,57 @@ namespace network
                 }
             }
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Interraction.getCoordinatesOFALlElmenentsCanavs(background);
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("asdfas");
+        }
+
+        
+        // method for drawing the lines 
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (background.Children.OfType<Ellipse>().Count() == 0)
+            {
+                MessageBox.Show("Nowhere to draw the lines at the moment");
+                toggleForDrawing.IsChecked = false;
+                return;
+            }
+            if (toggleForDrawing.IsChecked == true)
+            {
+                Interraction.deleteAllLinesForToggleButton(background);
+
+            }
+            else
+            {
+                Interraction.printAlllines(background); 
+            }
+          
+        }
     }
 
 
-        
+
 
     public class point
     {
         //base point class
+        public enum TypeEnum 
+        {
+            ROUTER,
+            SWITCH,
+            HUB
+        }
        public int x;
        public int y;
-        private int v;
+       private int v;
 
+        
         public point(int v)
         {
             this.v = v;
@@ -152,7 +198,60 @@ namespace network
 
     public class Interraction
     {
+        ArrayList xCoordinates = new ArrayList();
+        ArrayList yCoordinates = new ArrayList();
+        ArrayList verticesColor = new ArrayList();
+        ArrayList typeofNode = new ArrayList();
 
+
+        public static void deleteAllLinesForToggleButton(Canvas cs) 
+        {
+
+            for (int i = cs.Children.Count - 1; i >= 0; i += -1)
+            {
+                UIElement Child = cs.Children[i];
+                if (Child is Line)
+                    cs.Children.Remove(Child);
+            }
+
+
+            List<int> Ycoordinates = new List<int>();
+            List<int> Xcoordinates = new List<int>();
+
+            //  foreach (Ellipse circle in cs.Children.OfType<Ellipse>())
+            //   {
+            foreach (FrameworkElement t in cs.Children.OfType<Ellipse>())
+            {
+                double y = Canvas.GetTop(t);
+                double x = Canvas.GetLeft(t);
+
+                Ycoordinates.Add(Convert.ToInt32(y) + 2);
+                Xcoordinates.Add(Convert.ToInt32(x) + 2);
+
+            }
+
+            for (int i = 0; i < Ycoordinates.Count(); i++)
+            {
+                int x = Xcoordinates[i];
+                int y = Ycoordinates[i];
+                for (int n = 0; n < Ycoordinates.Count(); n++)
+                {
+                    Line ln = new Line();
+                    ln.Stroke = System.Windows.Media.Brushes.Black;
+                    ln.StrokeThickness = 1;
+                    ln.SnapsToDevicePixels = true;
+                    ln.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+                    int x1 = Xcoordinates[n];
+                    int y2 = Ycoordinates[n];
+                    ln.X1 = x;
+                    ln.X2 = x1;
+                    ln.Y1 = y;
+                    ln.Y2 = y2;
+                    cs.Children.Add(ln);
+
+                }
+            }
+        }
 
         public static List<point> randomizer(int pointsAmount) 
         {
@@ -175,17 +274,18 @@ namespace network
 
         }
 
-        public static void drawThemALl(List<point>coordinates,Canvas cs, string color) 
+        public  void drawThemALl(List<point>coordinates,Canvas cs, string color, string type) 
         {
             for (int i = 0; i < coordinates.Count(); i++) 
             {
-                circle(coordinates[i].getX(), coordinates[i].getY(), cs,color);
+                circle(coordinates[i].getX(), coordinates[i].getY(), cs,color,type);
             }
         }
 
-        public static void circle(int x, int y, Canvas cv,string color )
+        public  void circle(int x, int y, Canvas cv,string color,string type )// we have to pass type as enum type
         {
             //method for drawing 1 circle on console
+            char realType = type[0];
 
             Ellipse circle = new Ellipse()
             {
@@ -196,17 +296,73 @@ namespace network
                 Fill = (SolidColorBrush)(new BrushConverter().ConvertFromString(color))
                 
         };
+            TextBlock textbl = new TextBlock()
+            {
+                Text = realType.ToString(),
+                Width = 40,
+                Height = 40,
+                FontSize = 9,
+               
+                FontWeight = FontWeights.Bold
+
+
+
+            };
 
             cv.Children.Add(circle);
+            cv.Children.Add(textbl);
+            xCoordinates.Add(x);
+            yCoordinates.Add(y);
+            verticesColor.Add(color);
+            typeofNode.Add(type);
 
-            circle.SetValue(Canvas.LeftProperty, (double)x);
-            circle.SetValue(Canvas.TopProperty, (double)y);
+
+            circle.SetValue(Canvas.LeftProperty, (double)x-5);
+            circle.SetValue(Canvas.TopProperty, (double)y-2);
+            textbl.SetValue(Canvas.LeftProperty, (double)x);
+            textbl.SetValue(Canvas.TopProperty, (double)y);
         }
 
-        public static void deleteAllElements(Canvas cs)
-        {
-            cs.Children.Clear();
 
+        //deleting all line types 
+        public static void printAlllines(Canvas cs)
+        {
+ /*           foreach (FrameworkElement t in cs.Children.OfType<Line>())
+            {
+                cs.Children.Remove(t);
+            }*/
+            for (int i = cs.Children.Count - 1; i >= 0; i += -1)
+            {
+                UIElement Child = cs.Children[i];
+                if (Child is Line)
+                    cs.Children.Remove(Child);
+            }
+
+        }
+        public static void getCoordinatesOFALlElmenentsCanavs(Canvas cs)
+        {
+            if (cs.Children.OfType<Ellipse>().Count() == 0)
+            {
+                MessageBox.Show("No elements at the moment");
+            }
+            else
+            {
+                ArrayList xAxes = new ArrayList();
+                ArrayList yAxed = new ArrayList();
+
+                foreach (Ellipse circle in cs.Children.OfType<Ellipse>())
+                {
+                    double x = Canvas.GetLeft(circle);
+                    double y = Canvas.GetTop(circle);
+                    xAxes.Add(x);
+                    yAxed.Add(y);
+
+                   // MessageBox.Show(x.ToString());
+                   // MessageBox.Show(y.ToString());
+
+
+                }
+            }
         }
 
 
