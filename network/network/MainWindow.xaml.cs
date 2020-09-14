@@ -27,7 +27,6 @@ namespace network
              Canvas mainCanvas = background;
 
             InitializeComponent();
-            bool drawedLinesState = false;
             toggleForDrawing.IsChecked = false;
 
 
@@ -145,6 +144,13 @@ namespace network
                 Interraction.printAlllines(background); 
             }
           
+        }
+
+        private void TreeView_Representtaion(object sender, RoutedEventArgs e)
+        {
+            TreeViewRepresent tr = new TreeViewRepresent();
+            tr.Show();
+
         }
     }
 
@@ -309,8 +315,11 @@ namespace network
 
             };
 
+            // adding those elements in collections to represent in listview afterall
+
             cv.Children.Add(circle);
             cv.Children.Add(textbl);
+
             xCoordinates.Add(x);
             yCoordinates.Add(y);
             verticesColor.Add(color);
