@@ -9,11 +9,11 @@ namespace restapiAttempt5.Services
 {
     public interface  IPostService
     {
-        List<Post> GetPosts();
-        Post getPostByID(Guid postID);
-
-        bool UpdatePost(Post updatedPost);
-        public bool DeletePost(Guid postGuid);
+        Task<List<Post>> GetPostsAsync();
+        Task<Post> getPostByIDAsync(Guid postID);
+        Task<bool> CreatePostAsync(Post post);
+        Task<bool> UpdatePostAsync(Post updatedPost);
+        Task<bool> DeletePostAsync(Guid postGuid);
 
     }
 }

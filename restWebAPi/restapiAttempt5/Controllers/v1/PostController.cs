@@ -24,16 +24,16 @@ namespace restapiAttempt5.Controllers
 
           
         [HttpGet(ApiRoutes.Posts.getAllAPI)]
-        public IActionResult GetAll() 
+        public async Task<IActionResult> GetAll() 
         {
-            return Ok(postService.GetPosts());
+            return Ok(await postService.GetPostsAsync());
 
         }
 
         [HttpGet(ApiRoutes.Posts.Get)]
         public IActionResult Get([FromRoute] Guid postId)
         {
-            var post = postService.getPostByID(postId);
+            var post = postService.getPostByIDAsync(postId);
             if (post == null)
             {
                 return NotFound();
@@ -46,9 +46,9 @@ namespace restapiAttempt5.Controllers
 
 
         [HttpDelete(ApiRoutes.Posts.Delete)]
-        public IActionResult Delete([FromRoute] Guid postId) 
+        public async Task<IActionResult> Delete([FromRoute] Guid postId) 
         {
-            var deleted = postService.DeletePost(postId);
+            var deleted = await postService.DeletePostAsync(postId);
             if (deleted)
             {
                 return NoContent();
@@ -61,7 +61,7 @@ namespace restapiAttempt5.Controllers
         }
 
         [HttpPut(ApiRoutes.Posts.Update)]
-        public IActionResult Update([FromRoute] Guid postId, [FromBody] UpdatePostRequest postRequest)
+        public async Task<IActionResult> Update([FromRoute] Guid postId, [FromBody] UpdatePostRequest postRequest)
         {
             var post = new Post
             {
@@ -69,7 +69,7 @@ namespace restapiAttempt5.Controllers
                 Name = postRequest.Name
 
             };
-            var updated = postService.UpdatePost(post);
+            var updated = await postService.UpdatePostAsync(post);
             if (updated)
             {
                 return Ok(post);
@@ -79,15 +79,16 @@ namespace restapiAttempt5.Controllers
 
 
         [HttpPost(ApiRoutes.Posts.Create)] 
-        public IActionResult Create([FromBody] CreatePostRequest postRequest) 
+        public async Task<IActionResult> Create([FromBody] CreatePostRequest postRequest) 
         {
-            var post = new Post { ID = postRequest.ID };
+            var post = new Post { Name = postRequest.Name };
 
-            if (post.ID == Guid.Empty)
+/*            if (post.ID == Guid.Empty)
             {
                 post.ID = new Guid();
-            }
-            postService.GetPosts().Add(post);
+            }*/      
+            await postService.CreatePostAsync(post);
+
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
             var locationURL = baseUrl + "/" + ApiRoutes.Posts.Get.Replace("{postId}", post.ID.ToString());
 

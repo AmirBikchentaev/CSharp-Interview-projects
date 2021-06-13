@@ -7,6 +7,7 @@ namespace restapiAttempt5.Controllers.v1.Requests
 {
     public class CreatePostRequest
     {
-        public Guid ID { get; set; }
+        // public Guid ID { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace restapiAttempt5.Installer
                 .AddEntityFrameworkStores<DataContext>();
 
 
-            services.AddSingleton<IPostService, PostService>();
+            services.AddScoped<IPostService, PostService>();
 
         }
     }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\famil\\source\\repos\\restapiAttempt5\\restapiAttempt5\\RestApi.csproj": {}
+    "C:\\Users\\famil\\source\\github\\CSharp-Interview-projects\\restWebAPi\\restapiAttempt5\\RestApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\famil\\source\\repos\\restapiAttempt5\\restapiAttempt5\\RestApi.csproj": {
+    "C:\\Users\\famil\\source\\github\\CSharp-Interview-projects\\restWebAPi\\restapiAttempt5\\RestApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\famil\\source\\repos\\restapiAttempt5\\restapiAttempt5\\RestApi.csproj",
+        "projectUniqueName": "C:\\Users\\famil\\source\\github\\CSharp-Interview-projects\\restWebAPi\\restapiAttempt5\\RestApi.csproj",
         "projectName": "RestApi",
-        "projectPath": "C:\\Users\\famil\\source\\repos\\restapiAttempt5\\restapiAttempt5\\RestApi.csproj",
+        "projectPath": "C:\\Users\\famil\\source\\github\\CSharp-Interview-projects\\restWebAPi\\restapiAttempt5\\RestApi.csproj",
         "packagesPath": "C:\\Users\\famil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\famil\\source\\repos\\restapiAttempt5\\restapiAttempt5\\obj\\",
+        "outputPath": "C:\\Users\\famil\\source\\github\\CSharp-Interview-projects\\restWebAPi\\restapiAttempt5\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

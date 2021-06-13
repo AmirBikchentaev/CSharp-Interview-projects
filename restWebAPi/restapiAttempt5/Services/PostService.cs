@@ -1,4 +1,6 @@
-﻿using restapiAttempt5.Contract;
+﻿using Microsoft.EntityFrameworkCore;
+using restapiAttempt5.Contract;
+using restapiAttempt5.Data;
 using restapiAttempt5.Domain;
 using System;
 using System.Collections.Generic;
@@ -9,60 +11,55 @@ namespace restapiAttempt5.Services
 {
     public class PostService : IPostService
     {
-        private readonly List<Post> Posts;
+        //context for manipulating the data;    
+        private readonly DataContext _dataContext;
 
-        public PostService()
+        public PostService(DataContext dataContext)
         {
-            Posts = new List<Post>();
-            for (int i = 0; i < 5; i++)
-            {
-                Posts.Add(new Post
-                {
-                    ID = Guid.NewGuid(),
-                    Name = $"Post name is {i}"
-                });
-            }
+            _dataContext = dataContext;
         }
 
-        public Post getPostByID(Guid postID)
+        public async Task<List<Post>> GetPostsAsync()
         {
-            return Posts.SingleOrDefault(x => x.ID == postID);
+            return await _dataContext.Posts.ToListAsync();
 
-        }
+        }  
 
-        public List<Post> GetPosts()
+        public async Task<Post> getPostByIDAsync(Guid postID)
         {
-            return Posts;
+            return await _dataContext.Posts.SingleOrDefaultAsync(x => x.ID == postID);
 
         }
 
-        public bool UpdatePost(Post updatedPost)
+        public async Task<bool> CreatePostAsync(Post post)
         {
-            var exists = getPostByID(updatedPost.ID) != null;
-
-            if (!exists)
-            {
-                return false;
-
-            }
-
-            var index = Posts.FindIndex(x => x.ID == updatedPost.ID);
-            Posts[index] = updatedPost;
-            return true;
+            await _dataContext.Posts.AddAsync(post);
+            var created =  await _dataContext.SaveChangesAsync();
+            return created > 0;
         }
 
 
-        public bool DeletePost(Guid postGuid)
+
+        public async Task<bool> UpdatePostAsync(Post updatedPost)
         {
-            var NodeToDelete = getPostByID(postGuid);
-            if (NodeToDelete == null) 
-            {
-                return false;
 
-            }
+             _dataContext.Posts.Update(updatedPost);
+            var updated =  await _dataContext.SaveChangesAsync();
+            return updated >0;
+        }
 
-            Posts.Remove(NodeToDelete);
-            return true;
+
+        public async Task<bool> DeletePostAsync (Guid postGuid)
+        {
+            //WTL : Why we need put await after deleted to return deleted>0;
+
+
+
+            var post = await getPostByIDAsync(postGuid);
+            _dataContext.Posts.Remove(post);
+            var deleted = await _dataContext.SaveChangesAsync();
+
+            return deleted > 0;
 
 
         }

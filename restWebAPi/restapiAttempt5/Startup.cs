@@ -34,17 +34,16 @@ namespace restapiAttempt5
 
             services.InstallServicesInAssembly(Configuration);
 
-       /*   var Installers = typeof(Startup).Assembly.ExportedTypes.Where(x => 
-           typeof(Iinstaller).IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).Select(Activator.CreateInstance).Cast<Iinstaller>().ToList();
 
-            Installers.ForEach(Installers => Installers.InstallServices(services, Configuration));*/
-
-
-         /*   services.AddDbContext<DataContext>(options =>
+        /*    //dat abase integration
+               services.AddDbContext<DataContext>(options =>
                    options.UseSqlServer(
                        Configuration.GetConnectionString("DefaultConnection")));
+            //identity integration
                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                    .AddEntityFrameworkStores<DataContext>();
+            //swagger integration
+
                services.AddSwaggerGen(x =>
                {
                x.SwaggerDoc("v1", new OpenApiInfo
@@ -58,6 +57,7 @@ namespace restapiAttempt5
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,6 +68,7 @@ namespace restapiAttempt5
             }
 
             var swaggerOptions = new options.SwaggerOptions();
+
             Configuration.GetSection(nameof(options.SwaggerOptions)).Bind(swaggerOptions);
             app.UseSwagger(option =>
             {
@@ -79,14 +80,8 @@ namespace restapiAttempt5
                 option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
             });
 
-
-      
-
-
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
