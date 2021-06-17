@@ -105,8 +105,6 @@ C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
-C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -115,9 +113,7 @@ C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
@@ -160,3 +156,5 @@ C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\obj\Debug\netcoreapp3.1\RestApi.RazorTargetAssemblyInfo.cache
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\obj\Debug\netcoreapp3.1\RestApi.csproj.CopyComplete
 C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\obj\Debug\netcoreapp3.1\RestApi.genruntimeconfig.cache
+C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\Humanizer.dll
+C:\Users\famil\source\github\CSharp-Interview-projects\restWebAPi\restapiAttempt5\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
